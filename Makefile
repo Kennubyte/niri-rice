@@ -1,7 +1,7 @@
 # The ultimate Wayland/Niri setup
 AUR_HELPER = yay
 PKGS = niri waybar swaync kanshi swayosd hypridle hyprlock \
-       polkit-gnome vicinae-bin awww-bin stow greetd ttf-jetbrains-mono-nerd alacritty dolphin curl
+       polkit-gnome vicinae-bin awww-bin stow greetd ttf-jetbrains-mono-nerd alacritty dolphin curl ttf-twemoji
 WALLPAPERS = https://w.wallhaven.cc/full/ly/wallhaven-lyzvdl.png https://w.wallhaven.cc/full/d8/wallhaven-d8kpro.png https://w.wallhaven.cc/full/5y/wallhaven-5yzo69.png
 
 # Check if yay is installed
