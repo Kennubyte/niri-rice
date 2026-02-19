@@ -1,0 +1,27 @@
+input {
+    keyboard {
+        xkb {
+        }
+        numlock
+    }
+    touchpad {
+        tap
+        natural-scroll
+    }
+
+    mouse {
+    }
+
+    trackpoint {
+    }
+
+    touch {
+        map-to-output "eDP-1"
+    }
+}
+
+gestures {
+    hot-corners {
+		off
+    }
+}

@@ -1,0 +1,18 @@
+* {
+    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;    
+    color: whitesmoke;
+}
+
+window#waybar {
+    background-color: transparent; /* change to transparent later */
+}
+
+.modules-right {
+    padding: 0 5px;
+}
+
+.modules-right > widget > label, 
+.modules-right > widget > box {
+    padding: 0 10px;
+}

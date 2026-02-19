@@ -1,0 +1,34 @@
+{
+    "layer": "top",
+    "height": 24,
+    "modules-left": [],
+    "modules-center": [],
+    "modules-right": ["battery", "network", "custom/search", "custom/controlpanel", "clock"],
+    "battery": {
+        "interval": 2,
+        "format": "{icon}",
+        "format-icons": ["", "", "", "", ""],
+        "format-charging": "󰚥",
+        "tooltip-format": "{capacity}%"
+    },
+    "network": {
+        "format-wifi": "{icon}",
+        "format-ethernet": "",
+        "format-disconnected": "󰌙",
+        "format-disabled": "󰀝",
+        "tooltip-format": "{ipaddr}",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
+    },
+    "custom/search": {
+        "format": "",
+        "on-click": "vicinae toggle"
+    },
+    "custom/controlpanel": {
+        "format": "",
+        "tooltip-format": "{icon}",
+        "on-click": "swaync-client -t"
+    },
+    "clock": {
+        "format": "{:%a, %b %d  %H:%M}"
+    }
+}

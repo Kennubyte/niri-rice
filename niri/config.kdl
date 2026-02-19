@@ -1,0 +1,6 @@
+include "auto-outputs.kdl"
+include "input.kdl"
+include "layout.kdl"
+include "startup.kdl"
+include "binds.kdl"
+include "misc.kdl"
