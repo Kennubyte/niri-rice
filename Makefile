@@ -1,7 +1,7 @@
 # The ultimate Wayland/Niri setup
 AUR_HELPER = yay
 PKGS = niri waybar swaync kanshi swayosd hypridle hyprlock \
-       polkit-gnome vicinae-bin awww-bin stow greetd
+       polkit-gnome vicinae-bin awww-bin stow greetd ttf-jetbrains-mono-nerd alacritty dolphin
 
 # Check if yay is installed
 YAY_CHECK := $(shell command -v $(AUR_HELPER) 2> /dev/null)
