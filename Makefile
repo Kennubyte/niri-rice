@@ -1,12 +1,12 @@
 # The ultimate Wayland/Niri setup
 AUR_HELPER = yay
 PKGS = niri waybar swaync kanshi swayosd hypridle hyprlock \
-       polkit-gnome vicinae-bin awww-bin stow
+       polkit-gnome vicinae-bin awww-bin stow greetd
 
 # Check if yay is installed
 YAY_CHECK := $(shell command -v $(AUR_HELPER) 2> /dev/null)
 
-all: bootstrap install-deps link-dots
+all: bootstrap install-deps link-dots enable-services
 
 # 1. The Bootstrap: Install yay if it's missing
 bootstrap:
@@ -28,12 +28,18 @@ install-deps:
 # 3. Use Stow to link the configs
 link-dots:
 	@echo "🔗 Linking configs with Stow..."
-	
-	@echo "✨ System riced. Restart Niri and enjoy the vibe."
+	stow -t ../ stow_wrapper/
+	@echo "Linked"
+
+	sudo mkdir -p /etc/greetd
+	@sed "s@user = \"N/A\"@user = \"$(shell whoami)\"@" ./greetd/config.toml | sudo tee /etc/greetd/config.toml > /dev/null
+
+enable-services:
+	sudo systemctl enable --now greetd
 
 # 4. Quick cleanup
 clean:
 	@echo "🧹 Cleaning up pacman cache..."
 	sudo pacman -Sc --noconfirm
 
-.PHONY: all bootstrap install-deps link-dots clean
+.PHONY: all bootstrap install-deps link-dots enable-services clean
