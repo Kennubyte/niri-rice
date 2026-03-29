@@ -3,7 +3,8 @@ AUR_HELPER = yay
 PKGS = niri waybar swaync kanshi swayosd hypridle hyprlock \
        polkit-gnome vicinae-bin awww-bin stow greetd \
 	   ttf-jetbrains-mono-nerd alacritty dolphin \
-	   curl ttf-twemoji iio-niri figlet
+	   curl ttf-twemoji iio-niri figlet zsh \
+	   starship zsh-autosuggestions zsh-syntax-highlighting
 
 # Check if yay is installed
 YAY_CHECK := $(shell command -v $(AUR_HELPER) 2> /dev/null)
@@ -38,13 +39,17 @@ link-dots:
 prepare-startup:
 	mkdir -p ~/Pictures/Wallpapers
 	mkdir -p ~/.local/share/vicinae/scripts
-	cp ./wallpaperSwitcher ~/.local/share/vicinae/scripts/
-	cp PreWallpapers/* ~/Pictures/Wallpapers
+	
+	stow -t ~ homeStow
+	starship preset no-runtime-versions -o ~/.config/starship.toml
+
 
 enable-services:
 	sudo systemctl enable greetd
+	sudo chsh -s /usr/bin/zsh $USER
 	echo -e "\e[41m\e[1;97m$(figlet -f big "  REBOOT NOW  ")\e[0m"
     echo "Seriously, do it right now"
+	
 
 # 4. Quick cleanup
 clean:

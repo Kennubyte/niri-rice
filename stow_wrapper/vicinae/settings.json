@@ -17,12 +17,24 @@
       "applications:brave-browser"
    ],
    "providers": {
+      "@sovereign/store.vicinae.awww-switcher": {
+         "preferences": {
+            "wallpaperPath": "~/Pictures/Wallpapers"
+         }
+      },
       "applications": {
          "preferences": {
             "paths": [
                "/home/ken/.local/share/applications",
                "/usr/share/applications"
             ]
+         }
+      },
+      "scripts": {
+         "entrypoints": {
+            "wallpaperSwitcher": {
+               "enabled": true
+            }
          }
       }
    }
