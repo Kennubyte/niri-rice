@@ -1,8 +1,14 @@
 # The ultimate Wayland/Niri setup
 AUR_HELPER = yay
 PKGS = niri waybar swaync kanshi swayosd hypridle hyprlock \
-       polkit-gnome vicinae-bin awww-bin stow greetd ttf-jetbrains-mono-nerd alacritty dolphin curl ttf-twemoji
-WALLPAPERS = https://w.wallhaven.cc/full/ly/wallhaven-lyzvdl.png https://w.wallhaven.cc/full/d8/wallhaven-d8kpro.png https://w.wallhaven.cc/full/5y/wallhaven-5yzo69.png
+       polkit-gnome vicinae-bin awww-bin stow greetd \
+	   ttf-jetbrains-mono-nerd alacritty dolphin \
+	   curl ttf-twemoji iio-niri figlet
+
+WALLPAPERS = https://w.wallhaven.cc/full/ly/wallhaven-lyzvdl.png \
+             https://w.wallhaven.cc/full/d8/wallhaven-d8kpro.png \
+			 https://w.wallhaven.cc/full/5y/wallhaven-5yzo69.png \
+
 
 # Check if yay is installed
 YAY_CHECK := $(shell command -v $(AUR_HELPER) 2> /dev/null)
@@ -38,13 +44,12 @@ prepare-startup:
 	mkdir -p ~/Pictures/Wallpapers
 	mkdir -p ~/.local/share/vicinae/scripts
 	cp ./wallpaperSwitcher ~/.local/share/vicinae/scripts/
-	@for url in $(WALLPAPERS); do \
-		echo "Downloading $$url..."; \
-		curl -L $$url -o ~/Pictures/Wallpapers/$$(basename $$url); \
-	done
+	cp PreWallpapers/* ~/Pictures/Wallpapers
 
 enable-services:
-	sudo systemctl enable --now greetd
+	sudo systemctl enable greetd
+	echo -e "\e[41m\e[1;97m$(figlet -f big "  REBOOT NOW  ")\e[0m"
+    echo "Seriously, do it right now"
 
 # 4. Quick cleanup
 clean:
