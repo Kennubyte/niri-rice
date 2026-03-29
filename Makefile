@@ -15,7 +15,7 @@ all: bootstrap install-deps link-dots prepare-startup enable-services
 bootstrap:
 ifndef YAY_CHECK
 	@echo "🚀 Yay missing. Bootstrapping AUR helper..."
-	sudo pacman -S --needed --noconfirm base-devel git
+	sudo pacman -Syyu --needed --noconfirm base-devel git
 	git clone https://aur.archlinux.org/yay.git /tmp/yay
 	cd /tmp/yay && makepkg -si --noconfirm
 	rm -rf /tmp/yay
@@ -25,7 +25,7 @@ endif
 
 # 2. Install everything
 install-deps:
-	$(AUR_HELPER) -S --needed --noconfirm $(PKGS)
+	$(AUR_HELPER) -Syyu --needed --noconfirm $(PKGS)
 
 # 3. Use Stow to link the configs
 link-dots:
