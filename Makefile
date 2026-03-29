@@ -1,10 +1,10 @@
 # The ultimate Wayland/Niri setup
 AUR_HELPER = yay
 PKGS = niri waybar swaync kanshi swayosd hypridle hyprlock \
-       polkit-gnome vicinae-bin awww-bin stow greetd \
-	   ttf-jetbrains-mono-nerd alacritty dolphin \
-	   curl ttf-twemoji iio-niri figlet zsh \
-	   starship zsh-autosuggestions zsh-syntax-highlighting
+       polkit-gnome vicinae-bin awww-bin stow greetd-tuigreet \
+       ttf-jetbrains-mono-nerd alacritty dolphin \
+       curl ttf-twemoji iio-niri figlet zsh \
+       starship zsh-autosuggestions zsh-syntax-highlighting
 
 # Check if yay is installed
 YAY_CHECK := $(shell command -v $(AUR_HELPER) 2> /dev/null)
@@ -30,28 +30,26 @@ install-deps:
 # 3. Use Stow to link the configs
 link-dots:
 	@echo "🔗 Linking configs with Stow..."
-	stow -t ../ stow_wrapper/
+	stow -vt ../ stow_wrapper/
 	@echo "Linked"
 
-	sudo mkdir -p /etc/greetd
-	@sed "s@user = \"N/A\"@user = \"$(shell whoami)\"@" ./greetd/config.toml | sudo tee /etc/greetd/config.toml > /dev/null
-
+# 4. Prepare everything else
 prepare-startup:
 	mkdir -p ~/Pictures/Wallpapers
 	mkdir -p ~/.local/share/vicinae/scripts
-	
-	stow -t ~ homeStow
+	stow -vt ~ homeStow
+	sudo mkdir -p /etc/greetd
+	@sed "s@user = \"N/A\"@user = \"$(shell whoami)\"@" ./greetd/config.toml | sudo tee /etc/greetd/config.toml > /dev/null
 	starship preset no-runtime-versions -o ~/.config/starship.toml
 
-
+# 5. Services and Shell
 enable-services:
 	sudo systemctl enable greetd
-	sudo chsh -s /usr/bin/zsh $USER
-	echo -e "\e[41m\e[1;97m$(figlet -f big "  REBOOT NOW  ")\e[0m"
-    echo "Seriously, do it right now"
-	
+	sudo chsh -s /usr/bin/zsh $(shell whoami)
+	@echo -e "\e[41m\e[1;97m$$(figlet -f big "  REBOOT NOW  ")\e[0m"
+	@echo "Seriously, do it right now"
 
-# 4. Quick cleanup
+# Quick cleanup
 clean:
 	@echo "🧹 Cleaning up pacman cache..."
 	sudo pacman -Sc --noconfirm
