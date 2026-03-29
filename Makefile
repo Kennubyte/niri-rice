@@ -5,11 +5,6 @@ PKGS = niri waybar swaync kanshi swayosd hypridle hyprlock \
 	   ttf-jetbrains-mono-nerd alacritty dolphin \
 	   curl ttf-twemoji iio-niri figlet
 
-WALLPAPERS = https://w.wallhaven.cc/full/ly/wallhaven-lyzvdl.png \
-             https://w.wallhaven.cc/full/d8/wallhaven-d8kpro.png \
-			 https://w.wallhaven.cc/full/5y/wallhaven-5yzo69.png \
-
-
 # Check if yay is installed
 YAY_CHECK := $(shell command -v $(AUR_HELPER) 2> /dev/null)
 
