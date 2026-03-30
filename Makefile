@@ -4,7 +4,7 @@ PKGS = niri waybar swaync kanshi swayosd hypridle hyprlock \
        polkit-gnome vicinae-bin awww-bin stow greetd-tuigreet \
        ttf-jetbrains-mono-nerd noto-fonts-cjk alacritty dolphin \
        curl ttf-twemoji iio-niri figlet zsh \
-       starship zsh-autosuggestions zsh-syntax-highlighting 
+       starship zsh-autosuggestions zsh-syntax-highlighting quickshell
 
 # Check if yay is installed
 YAY_CHECK := $(shell command -v $(AUR_HELPER) 2> /dev/null)
@@ -16,7 +16,7 @@ bootstrap:
 ifndef YAY_CHECK
 	@echo "🚀 Yay missing. Bootstrapping AUR helper..."
 	sudo pacman -Syyu --needed --noconfirm base-devel git
-	git clone https://aur.archlinux.org/yay.git /tmp/yay
+	git clone https://aur.archlinux.org/yay.git /tmp/yay      
 	cd /tmp/yay && makepkg -si --noconfirm
 	rm -rf /tmp/yay
 else
